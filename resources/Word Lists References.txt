@@ -1,0 +1,2 @@
+palavras_ime -> https://www.ime.usp.br/~pf/dicios/index.html
+palavras_python_br -> https://github.com/pythonprobr/palavras
