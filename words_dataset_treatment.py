@@ -13,8 +13,16 @@ def treat_dataset(dataset: pd.DataFrame)  -> pd.DataFrame:
     # Make all words lower case
     dataset["words"] = dataset["words"].str.lower()
 
-    # Remove words with hyphen
-    dataset = dataset.drop(dataset[dataset["words"].str.contains("-")].index)
+    # Remove words with hyphen, ', ö, î, è, ï, ª, º, .
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("-")].index)   
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("'")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("ö")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("î")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("è")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("ï")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("ª")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains("º")].index)
+    dataset = dataset.drop(dataset[dataset["words"].str.contains(".", regex=False)].index)
 
     # Replace accented characters for not accented ones
     dataset["words"] = dataset["words"].str.replace("[áÁâÂãÃàÀ]","a", regex=True)
